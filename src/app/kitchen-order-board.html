@@ -21,6 +21,8 @@
     --flame: #ff8c1a;
     --gold: #ffc233;
     --gold-2: #ffe08a;
+    --purple: #b524d6;
+    --green: #28c76f;
     --cream: #f6ead6;
     --ash: #8a7c70;
     --line: rgba(255,255,255,.09);
@@ -48,7 +50,6 @@
     color: var(--gold); font-size: .72rem; font-weight: 600; text-align: center;
     flex-shrink: 0; line-height: 1.2; padding: 6px;
   }
-  .logo-img { height: 58px; width: auto; object-fit: contain; flex-shrink: 0; }
   .brand-sub { font-size: .7rem; color: var(--ash); font-weight: 500; margin: 2px 0 0; display: flex; align-items: center; gap: 6px; }
   .conn-dot { width: 7px; height: 7px; border-radius: 50%; background: #665a4f; display: inline-block; }
   .conn-dot.live { background: #4ee08a; box-shadow: 0 0 0 3px rgba(78,224,138,.18); }
@@ -103,7 +104,7 @@
   .empty-state i { font-size: 2.2rem; margin-bottom: 10px; display: block; color: var(--flame); }
   .empty-state p { font-weight: 600; margin: 0 0 4px; color: var(--cream); }
 
-  /* ── Order Ticket Cards ── */
+  /* ── Order Ticket Cards with Distinct Color Coding ── */
   .note {
     background: linear-gradient(165deg, #2a1c13, #1c130d);
     border: 1px solid var(--line); border-radius: 12px;
@@ -111,19 +112,25 @@
     padding: 20px 16px 14px; position: relative; margin-top: 14px; color: var(--cream);
   }
   .note::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px; border-radius: 12px 12px 0 0; }
-  .note.status-RECEIVED::before { background: linear-gradient(90deg, var(--ember), var(--ember-2)); }
-  .note.status-PREPARING::before { background: linear-gradient(90deg, var(--ember-2), var(--flame)); }
-  .note.status-READY::before { background: linear-gradient(90deg, var(--flame), var(--gold)); }
+  
+  /* Status Colors */
+  .note.status-RECEIVED::before { background: linear-gradient(90deg, #d32f2f, #ef5350); }
+  .note.status-PREPARING::before { background: linear-gradient(90deg, #e65100, #ff9800); }
+  .note.status-DELAYED::before { background: linear-gradient(90deg, #8e24aa, #e040fb); }
+  .note.status-READY::before { background: linear-gradient(90deg, #2e7d32, #4caf50); }
+
+  .note.status-DELAYED { border-color: rgba(224, 64, 251, 0.3); background: linear-gradient(165deg, #2e152f, #1c130d); }
   .note.overdue { box-shadow: 0 0 0 1.5px rgba(255,77,50,.55), 0 8px 22px -8px rgba(255,60,20,.45); }
 
   .stage-badge {
     position: absolute; top: -14px; left: 16px; width: 30px; height: 30px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; font-size: .85rem; color: #1a0f08;
+    display: flex; align-items: center; justify-content: center; font-size: .85rem; color: #ffffff;
     box-shadow: 0 3px 8px rgba(0,0,0,.4); border: 2px solid var(--char-2);
   }
-  .status-RECEIVED .stage-badge { background: linear-gradient(135deg, var(--ember), var(--ember-2)); }
-  .status-PREPARING .stage-badge { background: linear-gradient(135deg, var(--ember-2), var(--flame)); }
-  .status-READY .stage-badge { background: linear-gradient(135deg, var(--flame), var(--gold)); }
+  .status-RECEIVED .stage-badge { background: linear-gradient(135deg, #d32f2f, #ef5350); }
+  .status-PREPARING .stage-badge { background: linear-gradient(135deg, #e65100, #ff9800); }
+  .status-DELAYED .stage-badge { background: linear-gradient(135deg, #8e24aa, #e040fb); }
+  .status-READY .stage-badge { background: linear-gradient(135deg, #2e7d32, #4caf50); }
 
   .note-top { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-bottom: 10px; }
   .ticket-no { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: .7rem; background: rgba(255,255,255,.06); color: var(--gold-2); padding: 2px 7px; border-radius: 5px; margin-right: auto; }
@@ -151,17 +158,24 @@
   .btn-stage {
     flex: 1; border: none; border-radius: 8px; padding: 9px 10px;
     font-weight: 800; font-size: .72rem; text-transform: uppercase; letter-spacing: .03em;
-    color: #1a0f08; cursor: pointer; font-family: 'Oswald', sans-serif;
+    color: #ffffff; cursor: pointer; font-family: 'Oswald', sans-serif;
   }
-  .status-RECEIVED .btn-stage { background: linear-gradient(135deg, var(--ember), var(--ember-2)); }
-  .status-PREPARING .btn-stage { background: linear-gradient(135deg, var(--ember-2), var(--flame)); }
-  .status-READY .btn-stage { background: linear-gradient(135deg, var(--flame), var(--gold)); }
+  .status-RECEIVED .btn-stage { background: linear-gradient(135deg, #d32f2f, #ef5350); }
+  .status-PREPARING .btn-stage { background: linear-gradient(135deg, #e65100, #ff9800); }
+  .status-DELAYED .btn-stage { background: linear-gradient(135deg, #8e24aa, #e040fb); }
+  .status-READY .btn-stage { background: linear-gradient(135deg, #2e7d32, #4caf50); }
+
+  .btn-delay-toggle {
+    width: 32px; height: 32px; border-radius: 7px; border: none; background: rgba(181, 36, 214, 0.2); 
+    display: flex; align-items: center; justify-content: center; color: #e040fb; transition: all .15s;
+  }
+  .btn-delay-toggle:hover { background: rgba(181, 36, 214, 0.4); color: #fff; }
 
   .icon-btn { width: 32px; height: 32px; border-radius: 7px; border: none; background: rgba(255,255,255,.06); display: flex; align-items: center; justify-content: center; color: var(--ash); }
   .icon-btn:hover { background: rgba(255,255,255,.12); color: var(--cream); }
   .icon-btn.danger:hover { background: rgba(255,77,50,.18); color: #ff8f78; }
 
-  /* ── Modal Styling & Menu Dropdown Cards ── */
+  /* ── Modal Styling ── */
   .modal-content { border-radius: 16px; border: none; overflow: hidden; }
   .modal-header { background: linear-gradient(115deg, var(--ember), var(--flame)); color: #1a0f08; border: none; padding: 18px 22px; }
   .modal-title { font-family: 'Berkshire Swash', cursive; font-size: 1.6rem; }
@@ -191,8 +205,6 @@
   .btn-save { background: linear-gradient(135deg, var(--ember), var(--flame)); color: #1a0f08; border: none; font-weight: 700; border-radius: 9px; padding: 10px 20px; }
 
   #toastStack { position: fixed; top: 16px; right: 16px; z-index: 1080; display: flex; flex-direction: column; gap: 8px; width: 280px; }
-  .toast-note { background: linear-gradient(135deg,#241811,#1a110b); color: var(--gold-2); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: .8rem; box-shadow: 0 10px 24px rgba(0,0,0,.45); }
-  .toast-note b { display: block; font-family: 'Berkshire Swash', cursive; font-size: 1.1rem; color: var(--flame); margin-bottom: 2px; }
 </style>
 </head>
 <body>
@@ -225,9 +237,10 @@
 <!-- ══ FILTER TABS ══ -->
 <div class="tabbar" id="tabbar">
   <button class="tab-btn active" data-filter="ALL" style="--tab-accent:var(--gold);">All <span class="tab-count" id="count-ALL">0</span></button>
-  <button class="tab-btn" data-filter="RECEIVED" style="--tab-accent:var(--ember);">New <span class="tab-count" id="count-RECEIVED">0</span></button>
-  <button class="tab-btn" data-filter="PREPARING" style="--tab-accent:var(--flame);">Preparing <span class="tab-count" id="count-PREPARING">0</span></button>
-  <button class="tab-btn" data-filter="READY" style="--tab-accent:var(--gold);">Ready <span class="tab-count" id="count-READY">0</span></button>
+  <button class="tab-btn" data-filter="RECEIVED" style="--tab-accent:#ef5350;">New <span class="tab-count" id="count-RECEIVED">0</span></button>
+  <button class="tab-btn" data-filter="PREPARING" style="--tab-accent:#ff9800;">Preparing <span class="tab-count" id="count-PREPARING">0</span></button>
+  <button class="tab-btn" data-filter="DELAYED" style="--tab-accent:#e040fb;">Delayed <span class="tab-count" id="count-DELAYED">0</span></button>
+  <button class="tab-btn" data-filter="READY" style="--tab-accent:#4caf50;">Ready <span class="tab-count" id="count-READY">0</span></button>
 </div>
 
 <!-- ══ BOARD ══ -->
@@ -262,8 +275,9 @@
             <div class="col-md-3">
               <label class="form-label">Status</label>
               <select class="form-select" id="orderStatus">
-                <option value="RECEIVED">New</option>
+                <option value="RECEIVED">New (Received)</option>
                 <option value="PREPARING">Preparing</option>
+                <option value="DELAYED">Delayed</option>
                 <option value="READY">Ready</option>
                 <option value="COMPLETED">Completed</option>
               </select>
@@ -319,6 +333,7 @@
   const STAGE = {
     RECEIVED:  { action:'Start Cooking', next:'PREPARING', icon:'bi-bell-fill' },
     PREPARING: { action:'Mark Ready',    next:'READY',     icon:'bi-fire'      },
+    DELAYED:   { action:'Resume Prep',   next:'PREPARING', icon:'bi-hourglass-split' },
     READY:     { action:'Serve Order',   next:'COMPLETED', icon:'bi-check2'    },
   };
   const OVERDUE_MS = 10*60*1000;
@@ -433,7 +448,7 @@
       return matchesFilter && (!q || token.includes(q) || name.includes(q));
     });
 
-    ['ALL','RECEIVED','PREPARING','READY'].forEach(s=>{
+    ['ALL','RECEIVED','PREPARING','DELAYED','READY'].forEach(s=>{
       const c = s==='ALL' ? orders.length : orders.filter(o=>o.status===s).length;
       const el = document.getElementById('count-'+s);
       if(el) el.textContent = c;
@@ -470,6 +485,7 @@
           <div class="note-total"><span>Total</span><span class="amt">R${Number(order.total_price ?? computeTotal(items)).toFixed(2)}</span></div>
           <div class="note-footer">
             <button class="btn-stage" data-id="${order.id}" data-next="${stage.next}">${stage.action}</button>
+            ${status !== 'DELAYED' ? `<button class="btn-delay-toggle delay-btn" data-id="${order.id}" title="Mark Delayed"><i class="bi bi-pause-circle-fill"></i></button>` : ''}
             <button class="icon-btn edit-btn" data-id="${order.id}" title="Edit"><i class="bi bi-pencil-fill"></i></button>
             <button class="icon-btn danger delete-btn" data-id="${order.id}" title="Delete"><i class="bi bi-trash3-fill"></i></button>
           </div>
@@ -490,6 +506,7 @@
 
   document.getElementById('noteGrid').addEventListener('click', async e=>{
     const stageBtn = e.target.closest('.btn-stage');
+    const delayBtn = e.target.closest('.delay-btn');
     const editBtn = e.target.closest('.edit-btn');
     const delBtn = e.target.closest('.delete-btn');
 
@@ -501,6 +518,14 @@
         : orders.map(o=> o.id===id ? { ...o, status:nextStatus } : o);
       render();
       await sb.from(ORDERS_TABLE).update({ status:nextStatus }).eq('id', id);
+      return;
+    }
+
+    if(delayBtn){
+      const id = delayBtn.dataset.id;
+      orders = orders.map(o=> o.id===id ? { ...o, status:'DELAYED' } : o);
+      render();
+      await sb.from(ORDERS_TABLE).update({ status:'DELAYED' }).eq('id', id);
       return;
     }
 
